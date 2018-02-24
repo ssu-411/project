@@ -2,9 +2,21 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Our Project</title>
+    <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
+<a href="register">Регистрация</a>
+
 Test Test Test
+
+{% if user.is_authenticated %}
+  <p>Hi {{ user.username }}!</p>
+{% else %}
+  <p>You are not logged in.</p>
+
+{% endif %}
+
+{% block content %}{% endblock %}
+
 </body>
 </html>
