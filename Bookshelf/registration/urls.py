@@ -1,5 +1,5 @@
 from django.urls import path
-from registration.views import Register
+from Bookshelf.registration.views import Register
 
 
 urlpatterns = [
