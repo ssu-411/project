@@ -1,5 +1,5 @@
 # Project architecture
-  ====================
+--------------------
 
 ## Views
 
@@ -34,7 +34,12 @@ schemas.
 3. For each user there would be a special schema with recently readed books and
    books predicted as perfect to read for this user.
 
-   | Table for recently readed | Table for perfect books |
-   | id   | userid   | bookid  | id  | userid  | bookid  |
-   | ---- | :------: | :-----: | :-: | :-----: | :-----: |
-   |    1 |       8  |   1000  |  1  |    1033 | 1010107 | 
+   ### Table for recently readed 
+   | id   | userid   | bookid  |
+   | ---- | :------: | :-----: |
+   |    1 |       8  |   1000  | 
+   
+   ### Table for perfect books
+   | id  | userid  | bookid  |
+   | :-: | :-----: | :-----: |
+   |  1  |    1033 | 1010107 | 
