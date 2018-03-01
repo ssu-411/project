@@ -1,5 +1,4 @@
 # Project architecture
---------------------
 
 ## Views
 
@@ -27,19 +26,21 @@ schemas.
 
 2. Books schema global
 
-   | id | bookname   | author | rating  | publisher | dateOfPublishing   |
-   | -- | :--------: | :----: | :-----: | :-------: | :----------------: |
-   |  1 | Helloworld |   god  | infinit | world     | beforeTheCommonEra |
+   | id | booktitle  | author | rating  | publisher | dateOfPublishing   | genre     |
+   | -- | :--------: | :----: | :-----: | :-------: | :----------------: | :-------: |
+   |  1 | Helloworld |   god  | infinit | world     | beforeTheCommonEra | coolgenre |
 
 3. For each user there would be a special schema with recently readed books and
    books predicted as perfect to read for this user.
 
-   ### Table for recently readed 
+   ### Table for recently readed
+
    | id   | userid   | bookid  |
    | ---- | :------: | :-----: |
-   |    1 |       8  |   1000  | 
+   |    1 |       8  |   1000  |
    
    ### Table for perfect books
+
    | id  | userid  | bookid  |
    | :-: | :-----: | :-----: |
-   |  1  |    1033 | 1010107 | 
+   |  1  |    1033 | 1010107 |
