@@ -10,7 +10,7 @@ class Book(models.Model):
     title = models.CharField(max_length=50)
     author = models.ManyToManyField('Author')
     rating = models.FloatField()
-    date = models.DateField()
+    date = models.PositiveIntegerField(null=True)
     publisher = models.ForeignKey('Publisher', on_delete=models.SET_NULL, null=True)
     genre = models.ManyToManyField('Genre')
 
