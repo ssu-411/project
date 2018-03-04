@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="{% static 'style.css' %}">
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
@@ -20,7 +20,6 @@
 
     }
 </script>
-
 
 <header class="top_section">
     <div class="head_right">
@@ -78,9 +77,30 @@
     </div>
 </header>
 
-<div class="list">
+<div class="content">
     {% block content %}{% endblock %}
 </div>
+
+<footer>
+    <div class="footer_text">
+        <a class="link" href="https://github.com/ssu-411/project">BOOKSHELF 2018</a> <br>
+        Проект создан в учебных целях.
+    </div>
+</footer>
+
+<div id="upbutton"></div>
+<script>
+    $(window).scroll(function() {
+        if ($(this).scrollTop() > 50) {
+            if ($('#upbutton').is(':hidden')) {
+                $('#upbutton').css({opacity : 1}).fadeIn('slow');
+            }
+        } else { $('#upbutton').stop(true, false).fadeOut('fast'); }
+    });
+    $('#upbutton').click(function() {
+        $('html, body').stop().animate({scrollTop : 0}, 300);
+    });
+</script>
 
 </body>
 </html>
