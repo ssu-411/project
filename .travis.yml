@@ -1,0 +1,14 @@
+# Tell Travis you want a Python environment to test in
+language: python
+# List the versions of Python you'd like to test against
+python:
+  - "3.6"
+# List the versions of Django you'd like to test against
+env:
+  - DJANGO_VERSION=2.0.2
+# Tell it the things it will need to install when it boots
+install: 
+  - pip install -r requirements.txt
+  - pip install -q Django==$DJANGO_VERSION --use-mirrors
+# Tell Travis how to run the test script itself
+script: python test.py ./tests
