@@ -9,6 +9,7 @@ env:
 # Tell it the things it will need to install when it boots
 install: 
   - pip install -r requirements.txt
-  - pip install -q Django==$DJANGO_VERSION --use-mirrors
+  - python -m pip install flake8
 # Tell Travis how to run the test script itself
-script: python test.py ./tests
+#script: python test.py
+script: flake8 --count *.py
