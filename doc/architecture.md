@@ -44,3 +44,21 @@ schemas.
    | id  | userid  | bookid  |
    | :-: | :-----: | :-----: |
    |  1  |    1033 | 1010107 |
+
+## Data source
+
+The data from [here](https://github.com/zygmuntz/goodbooks-10k) will be used in 
+this project. The data stored in the .csv files. 
+
+The necessary files:
+
+* **books.csv** - the full data about books - Book title, author, rating,
+  publisher, genre(tags).
+* **book_tags.csv** - the relation between books and tags.
+* **ratings.csv** - the books ratings given by each user.
+* **tags.csv** - the list of tags.
+* **to_read.csv** - the books marked as to read by users.
+
+The
+[link](https://drive.google.com/drive/folders/1gpCuXMDDwqyrhSzrJDt_E3TicItA9kiU) 
+to the .csv files and book images.
