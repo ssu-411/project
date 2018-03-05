@@ -1,0 +1,171 @@
+body {
+    margin: 0;
+}
+
+header, section, footer, aside, nav, article {
+  display: block;
+}
+
+.top_section {
+    background: url(/static/head.jpg);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.name {
+	position: relative;
+	top: 20px;
+	background: url(/static/name.png);
+	height: 100px;
+	background-repeat: no-repeat;
+	margin: auto;
+	background-position: center;
+	z-index: 0;
+}
+
+.head_right {
+    float: right;
+    width: 12%;
+    text-align: right;
+    right: 5%;
+    color: white;
+    top: 32px;
+    position: absolute;
+    z-index: 1;
+}
+
+a.link {
+    color: white;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a.login-link {
+    position: relative;
+}
+
+a.link-forgot {
+    color: black;
+    text-decoration: none;
+    float: left;
+    padding-top: 2px;
+}
+
+.login-form {
+    padding-right: 8px;
+    margin-top: 15px;
+    padding-left: 8px;
+    background-color: white;
+    opacity: .9;
+    position: absolute;
+    border-radius: 3px;
+    font-size: 14px;
+}
+
+.button {
+    height: 25px;
+    width: 55px;
+    background-color: #F5DEB3;
+    border-width: 1px 1px ;
+    border-style: solid none;
+    border-color: white;
+    border-radius: 4px;
+    color: black;
+}
+
+.nav {
+  position: relative;
+  padding-top: 30px;
+  padding-bottom: 40px;
+  text-align: center;
+  border-spacing: 30px 0;
+  margin: auto;
+  letter-spacing: 1px;
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid transparent;
+}
+
+.bottompan {
+	left: 0px;
+	width: 100%;
+	padding-top: 1%;
+	border-top: 1px solid #40304a;
+	background-color: rgba(0, 0, 0, 0.2);
+	color: rgba(0, 0, 0, 0.8);
+	position: relative;
+	bottom: 0px;
+    padding-bottom: 1%;
+}
+
+.bottompan .search_field {
+	min-width: 430px;
+	max-width: 40%;
+	margin: -30px auto 0 auto;
+	position: relative;
+}
+
+.bottompan .search_field form {
+	padding: 0 10px;
+}
+
+.bottompan .search_field form input[type='text'] {
+	width: 100%;
+	padding: 7px;
+}
+
+.bottompan .search_field form input[type='submit'] {
+	width: 26px;
+	height: 100%;
+	background: url(/static/search_icon.png) no-repeat left 3px;
+	padding: 0;
+	border: none;
+	position: absolute;
+	right: 0px;
+	top: 2px;
+	text-indent: 9000px;
+	overflow: hidden;
+}
+
+:root {
+    --footer_height : 70px;
+}
+
+.content {
+    min-height: calc(100vh - 224px - var(--footer_height) - 60px);
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+footer {
+   position: relative;
+   bottom: 0;
+   width: 100%;
+   height: var(--footer_height);
+   background: rgba(14,14,14,0.85);
+}
+
+.footer_text {
+    color: white;
+    text-align: center;
+    padding-top: 15px;
+}
+
+#upbutton {
+    background: url(/static/up.png) no-repeat top left;
+    height: 60px;
+    width: 60px;
+    bottom: 30px;
+    right: 60px;
+    cursor: pointer;
+    display: none;
+    position: fixed;
+    z-index: 999;
+}
