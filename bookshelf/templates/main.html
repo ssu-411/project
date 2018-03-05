@@ -1,21 +1,106 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html style="font-family:Georgia" lang="ru">
+{% load static %}
+
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
+<script type="text/javascript">
+    function show(){
+        if (document.getElementById('form').style.display == 'none'){
+            document.getElementById('form').style.display = 'block';
+        }
+        else {
+            document.getElementById('form').style.display = 'none';
+        }
 
-{% if user.is_authenticated %}
-    <p>Hi {{ user.username }}!</p>
-    <a href="/logout/">Log out </a>
-{% else %}
-    <p>You are not logged in.</p>
-    <p><a href="/login/">Log in </a></p>
-    <p><a href="/register">Регистрация</a></p>
-{% endif %}
+    }
+</script>
 
-{% block content %}{% endblock %}
+<header class="top_section">
+    <div class="head_right">
+        {% if user.is_authenticated %}
+        Привет, {{ user.username }}!
+        <p><a class="link" href="/logout/">Выйти</a></p>
+        {% else %}
+        <a class="link" onclick="show()" style="cursor:pointer">Вход</a> /
+        <a class="link" href="/register">Регистрация</a>
+
+        <div class="login-form" id="form" style="display:none">
+            <form method="post">
+                {% csrf_token %}
+                <p>
+                    <input type="text" name="username" autofocus="" maxlength="254" required="" id="id_username"
+                           placeholder="Логин">
+                </p>
+                <p>
+                    <input type="password" name="password" required="" id="id_password" placeholder="Пароль">
+                </p>
+                <p>
+                    <a class="link-forgot" href="/password_reset/">Забыли пароль?</a>
+                </p>
+                <p class="submit">
+                    <button class="button" type="submit">Войти</button>
+                </p>
+            </form>
+        </div>
+        {% endif %}
+    </div>
+    <div class="name">
+    </div>
+    <table class="nav">
+        <tr>
+            <td>
+                <a class="link" href="/">Главная</a>
+            </td>
+            <td>
+                <a class="link" href="#products">Книги</a>
+            </td>
+            <td>
+                <a class="link" href="#service">Рекомендации</a>
+            </td>
+            <td>
+                <a class="link" href="#about">О нас</a>
+            </td>
+        </tr>
+    </table>
+    <div class="bottompan">
+        <div class="search_field">
+            <form action="/pages/biblio_search/" method="get">
+                <input id="search" name="q" type="text" placeholder="Введите название произведения или автора">
+                <input type="submit" value="Найти"></form>
+        </div>
+    </div>
+</header>
+
+<div class="content">
+    {% block content %}{% endblock %}
+</div>
+
+<footer>
+    <div class="footer_text">
+        <a class="link" href="https://github.com/ssu-411/project">BOOKSHELF 2018</a> <br>
+        Проект создан в учебных целях.
+    </div>
+</footer>
+
+<div id="upbutton"></div>
+<script>
+    $(window).scroll(function() {
+        if ($(this).scrollTop() > 50) {
+            if ($('#upbutton').is(':hidden')) {
+                $('#upbutton').css({opacity : 1}).fadeIn('slow');
+            }
+        } else { $('#upbutton').stop(true, false).fadeOut('fast'); }
+    });
+    $('#upbutton').click(function() {
+        $('html, body').stop().animate({scrollTop : 0}, 300);
+    });
+</script>
 
 </body>
 </html>

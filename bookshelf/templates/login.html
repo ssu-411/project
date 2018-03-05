@@ -1,10 +1,23 @@
 {% extends 'main.html' %}
 
 {% block content %}
-<h2>Login</h2>
+<h2>Вход</h2>
 <form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Login</button>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <!--{% for field in form %}
+        <p>
+            {% if field.label_tag == '<label for="id_username">Username:</label>' %}
+            Логин
+            {% else %}
+            Пароль
+            {% endif %}
+            <br>
+            {{ field }}
+        </p>
+    {% endfor %}-->
+    <p class="submit">
+        <button type="submit">ок</button>
+    </p>
 </form>
 {% endblock content %}
