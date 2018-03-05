@@ -9,7 +9,7 @@ env:
 # Tell it the things it will need to install when it boots
 install: 
   - pip install -r requirements.txt
-  - python -m pip install flake8
+  - pip install -r test-requirements.txt
 # Tell Travis how to run the test script itself
 #script: python test.py
 script: flake8 --count *.py
