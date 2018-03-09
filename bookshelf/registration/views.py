@@ -39,7 +39,11 @@ class Register(CreateView):
             my_user.save()
             return redirect('/')
         else:
-            form.clean()
-            form2.clean()
-            form3.clean()
-            return render(request, 'signup.html', self.fun())
+            # form.clean()
+            # form2.clean()
+            # form3.clean()
+            return render(request, 'signup.html', {
+                'form': form,
+                'form2': form2,
+                'form3': form3
+            })
