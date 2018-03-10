@@ -1,0 +1,32 @@
+{% extends 'main.html' %}
+{# {% load book %} #}
+
+{% block content %}
+Здесь будут книги
+
+{% for book in books %}
+    <p>
+        {% for author in book.author.all %}
+            {{ author }}
+        {% endfor %}
+        <a href="/book/{{ book.id }}">"{{ book.title }}"</a>
+        <!--({{ book.date }})-->
+        {{ book.rating }}
+    </p>
+{% endfor %}
+
+
+<p>
+    {% if prev_page != "-1" %}
+        <a href="/books/p{{ prev_page }}">Предыдущая</a>
+    {% endif %}
+
+    {% if prev_page != "-1" and next_page%}
+        стр {{ page }}
+    {% endif %}
+
+    {% if next_page %}
+        <a href="/books/p{{ next_page }}">Следующая</a>
+    {% endif %}
+</p>
+{% endblock %}

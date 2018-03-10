@@ -1,0 +1,23 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<p>
+    Когда-нибудь здесь будет картинка
+</p>
+
+{{ book.title }} <br>
+{% for author in book.author.all %}
+    {{ author }}
+{% endfor %} <br>
+Год {{ book.date }} <br>
+Издательство: {{ book.publisher }} <br>
+Оценка: {{ book.rating }} <br>
+
+Жанры:
+{% for genre in book.genre.all %}
+    {{ genre }}
+{% endfor %} <br>
+<p>
+    Далее когда-нибудь будет описание:
+</p>
+{% endblock %}
