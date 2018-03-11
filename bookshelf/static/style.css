@@ -158,6 +158,76 @@ footer {
     padding-top: 15px;
 }
 
+.reg{
+    min-width: 430px;
+	max-width: 40%;
+	margin: auto;
+}
+
+.fieldWrapper {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+div.fieldWrapper input, select {
+    float: right;
+    width: 220px;
+}
+
+.superstar {
+    color: red;
+    font-size: 13px;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+.errorlist {
+    font-size: 13px;
+    color: red;
+}
+
+.btn_regr {
+    margin: 20px auto 0 auto;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 15px;
+    border-width: 1px 1px ;
+    border-style: solid none;
+    border-color: white;
+    border-radius: 4px;
+    height: 35px;
+    width: 160px;
+	color: black;
+	border: solid 1px #b7b7b7;
+	background: #fff;
+	background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ededed));
+	background: -moz-linear-gradient(top,  #fff,  #ededed);
+	background: -ms-linear-gradient(top,  #fff,  #ededed);
+    background-image: -o-linear-gradient(top,  #fff,  #ededed);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ededed');
+}
+
+.btn_regr:hover {
+	background: #ededed;
+	background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#dcdcdc));
+	background: -moz-linear-gradient(top,  #fff,  #dcdcdc);
+	background: -ms-linear-gradient(top,  #fff,  #dcdcdc);
+    background-image: -o-linear-gradient(top,  #fff,  #dcdcdc);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#dcdcdc');
+}
+
+.btn_regr :active {
+	color: #999;
+	background: -webkit-gradient(linear, left top, left bottom, from(#ededed), to(#fff));
+	background: -moz-linear-gradient(top,  #ededed,  #fff);
+	background: -ms-linear-gradient(top,  #ededed,  #fff);
+    background-image: -o-linear-gradient(top,  #ededed,  #fff);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#ffffff');
+}
+
+
 #upbutton {
     background: url(/static/up.png) no-repeat top left;
     height: 60px;
