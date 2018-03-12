@@ -1,4 +1,7 @@
 # BOOKSHELF
+
+[![Build Status](https://travis-ci.org/ssu-411/project.svg?branch=master)](https://travis-ci.org/ssu-411/project)
+
 Bookshelf is a simple web app for book choices recommendation. The goal of the app is to provide users with a list of new books based on their preferences. The previously read literature, favorite genre, rating and comments of other readers will be taken into consideration for creating a list.
 ***
 The work is based on `machine learning` algorithms and the `Python` programming language. recommended operating system is `Linux`.
