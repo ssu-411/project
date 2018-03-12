@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.contrib.auth.views import LoginView
 from django.urls import path, include
-
+from book.views import BooksView, BookView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,4 +24,7 @@ urlpatterns = [
     path('login/', LoginView.as_view(template_name='login.html')),
     path('', LoginView.as_view(template_name='main.html')),
     path('', include('django.contrib.auth.urls')),
+    path('books', BooksView.as_view()),
+    path('books/p<page>', BooksView.as_view()),
+    path('book/<id>', BookView.as_view()),
 ]
