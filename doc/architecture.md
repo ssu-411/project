@@ -1,5 +1,4 @@
 # Project architecture
---------------------
 
 ## Views
 
@@ -27,19 +26,39 @@ schemas.
 
 2. Books schema global
 
-   | id | bookname   | author | rating  | publisher | dateOfPublishing   |
-   | -- | :--------: | :----: | :-----: | :-------: | :----------------: |
-   |  1 | Helloworld |   god  | infinit | world     | beforeTheCommonEra |
+   | id | booktitle  | author | rating  | publisher | dateOfPublishing   | genre     |
+   | -- | :--------: | :----: | :-----: | :-------: | :----------------: | :-------: |
+   |  1 | Helloworld |   god  | infinit | world     | beforeTheCommonEra | coolgenre |
 
 3. For each user there would be a special schema with recently readed books and
    books predicted as perfect to read for this user.
 
-   ### Table for recently readed 
+   ### Table for recently readed
+
    | id   | userid   | bookid  |
    | ---- | :------: | :-----: |
-   |    1 |       8  |   1000  | 
+   |    1 |       8  |   1000  |
    
    ### Table for perfect books
+
    | id  | userid  | bookid  |
    | :-: | :-----: | :-----: |
-   |  1  |    1033 | 1010107 | 
+   |  1  |    1033 | 1010107 |
+
+## Data source
+
+The data from [here](https://github.com/zygmuntz/goodbooks-10k) will be used in 
+this project. The data stored in the .csv files. 
+
+The necessary files:
+
+* **books.csv** - the full data about books - Book title, author, rating,
+  publisher, genre(tags).
+* **book_tags.csv** - the relation between books and tags.
+* **ratings.csv** - the books ratings given by each user.
+* **tags.csv** - the list of tags.
+* **to_read.csv** - the books marked as to read by users.
+
+The
+[link](https://drive.google.com/drive/folders/1gpCuXMDDwqyrhSzrJDt_E3TicItA9kiU) 
+to the .csv files and book images.
