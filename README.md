@@ -39,7 +39,6 @@ pip3 install -r requirements.txt
 
 Run following commands to reflect data base models in a migration:
 ```
-python manage.py makemigrations
 python manage.py migrate
 ```
 
