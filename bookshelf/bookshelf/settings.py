@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'registration',
     'book',
+    'datadownloader.apps.DatadownloaderConfig',
 ]
 
 MIDDLEWARE = [
@@ -128,6 +129,15 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
  ]
- 
+
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+
+# Absolute filesystem path to the directory that will hold user-uploaded files.
+# https://docs.djangoproject.com/en/2.0/topics/files
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# URL that handles the media served from MEDIA_ROOT.
+
+MEDIA_URS = '/media/'
