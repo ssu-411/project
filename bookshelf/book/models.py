@@ -10,9 +10,11 @@ class Book(models.Model):
     title = models.CharField(max_length=50)
     author = models.ManyToManyField('Author')
     rating = models.FloatField()
-    date = models.PositiveIntegerField(null=True)
-    publisher = models.ForeignKey('Publisher', on_delete=models.SET_NULL, null=True)
-    genre = models.ManyToManyField('Genre')
+    date = models.PositiveIntegerField(null=True, blank=True)
+    publisher = models.ForeignKey('Publisher', on_delete=models.SET_NULL, null=True, blank=True)
+    genre = models.ManyToManyField('Genre', blank=True)
+    smallImage = models.ImageField(upload_to='books', blank=True)
+    bigImage = models.ImageField(upload_to='books', blank=True)
 
     def __str__(self):
         return self.title
