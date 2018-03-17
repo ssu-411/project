@@ -42,6 +42,32 @@ Run following commands to reflect data base models in a migration:
 python manage.py migrate
 ```
 
+In order to load data from .csv files go to the bookshelf/media folder. There 
+will be an archive DBData.zip. Unzip it there:
+```
+unzip DBData.zip
+```
+Move the books folder from goodbooks to media folder:
+```
+mv goodbooks/books ./
+```
+this needs to have the images shown in the application.
+
+Then move back to bookshelf folder. The loading of full data from .csv files can 
+take more than hour. So, if you don't have time, run this command:
+```
+python manage.py downloaddata media/goodbooks --books_number 500 --users_number 10000 --no-warnings --no-error-messages 
+```
+It will create 10000 users and load data for first 500 books.
+
+But, if you have time than just run this:
+```
+python manage.py downloaddata media/goodbooks
+```
+and all 10000 books data will be loaded and all needed users will be created. 
+Notice that command `downloaddata` should be run on clean database or errors may 
+occur.
+
 Run the application:
 ```
 python manage.py runserver
