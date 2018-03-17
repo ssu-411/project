@@ -26,9 +26,9 @@ schemas.
 
 2. Books schema global
 
-   | id | booktitle  | author | rating  | publisher | dateOfPublishing   | genre     |
-   | -- | :--------: | :----: | :-----: | :-------: | :----------------: | :-------: |
-   |  1 | Helloworld |   god  | infinit | world     | beforeTheCommonEra | coolgenre |
+   | id | booktitle  | author | rating  | publisher | dateOfPublishing   | genre     | smallImage | bigImage  |
+   | -- | :--------: | :----: | :-----: | :-------: | :----------------: | :-------: | :--------: | :-------: |
+   |  1 | Helloworld |   god  | infinit | world     | beforeTheCommonEra | coolgenre | pathtoimg  | pathtoimg |
 
 3. For each user there would be a special schema with recently readed books and
    books predicted as perfect to read for this user.
@@ -47,8 +47,8 @@ schemas.
 
 ## Data source
 
-The data from [here](https://github.com/zygmuntz/goodbooks-10k) will be used in 
-this project. The data stored in the .csv files. 
+The data from [here](https://www.kaggle.com/zygmunt/goodbooks-10k/version/5)
+will be used in this project. The data stored in the .csv files. 
 
 The necessary files:
 
@@ -59,6 +59,5 @@ The necessary files:
 * **tags.csv** - the list of tags.
 * **to_read.csv** - the books marked as to read by users.
 
-The
-[link](https://drive.google.com/drive/folders/1gpCuXMDDwqyrhSzrJDt_E3TicItA9kiU) 
-to the .csv files and book images.
+All .csv files and book images are provided in archive 
+/bookshelf/media/DBData.zip.
