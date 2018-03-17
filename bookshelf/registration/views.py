@@ -1,9 +1,14 @@
+from django.contrib.auth.views import PasswordChangeView
 from django.shortcuts import render, redirect
 from django.utils.decorators import method_decorator
 from django.contrib.auth.forms import UserCreationForm
-from .forms import MyUserRegisterForm, UserRegisterForm
+
+from registration.models import MyUser
+from .forms import MyUserRegisterForm, UserRegisterForm, PasswordChangeCustomForm
 from django.views.decorators.csrf import csrf_protect
 from django.views.generic import CreateView
+
+
 # Create your views here.
 
 
@@ -39,11 +44,29 @@ class Register(CreateView):
             my_user.save()
             return redirect('/')
         else:
-            # form.clean()
-            # form2.clean()
-            # form3.clean()
             return render(request, 'signup.html', {
                 'form': form,
                 'form2': form2,
                 'form3': form3
             })
+
+
+class CustomPasswordChangeView(PasswordChangeView):
+    template_name = 'user.html'
+    form_class = PasswordChangeCustomForm
+    extra_context = {"changed": False}
+
+    def get_context_data(self, **kwargs):
+        user_id = int(self.request.get_raw_uri().split('user/')[1].split('/')[0])
+        if self.request.user.id == user_id:
+            context = super().get_context_data(**kwargs)
+        else:
+            context = {}
+        context['profile'] = MyUser.objects.get(id=user_id)
+        self.extra_context['changed'] = False
+        return context
+
+    def get_success_url(self):
+        self.extra_context['changed'] = True
+        user_id = self.request.get_raw_uri().split('user/')[1].split('/')[0]
+        return '/user/{}'.format(user_id)

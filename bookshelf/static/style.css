@@ -3,7 +3,7 @@ body {
 }
 
 header, section, footer, aside, nav, article {
-  display: block;
+    display: block;
 }
 
 .top_section {
@@ -16,14 +16,14 @@ header, section, footer, aside, nav, article {
 }
 
 .name {
-	position: relative;
-	top: 20px;
-	background: url(/static/name.png);
-	height: 100px;
-	background-repeat: no-repeat;
-	margin: auto;
-	background-position: center;
-	z-index: 0;
+    position: relative;
+    top: 20px;
+    background: url(/static/name.png);
+    height: 100px;
+    background-repeat: no-repeat;
+    margin: auto;
+    background-position: center;
+    z-index: 0;
 }
 
 .head_right {
@@ -72,7 +72,7 @@ a.link-forgot {
     height: 25px;
     width: 55px;
     background-color: #F5DEB3;
-    border-width: 1px 1px ;
+    border-width: 1px 1px;
     border-style: solid none;
     border-color: white;
     border-radius: 4px;
@@ -80,60 +80,60 @@ a.link-forgot {
 }
 
 .nav {
-  position: relative;
-  padding-top: 30px;
-  padding-bottom: 40px;
-  text-align: center;
-  border-spacing: 30px 0;
-  margin: auto;
-  letter-spacing: 1px;
-  border-bottom: 1px solid transparent;
-  border-top: 1px solid transparent;
+    position: relative;
+    padding-top: 30px;
+    padding-bottom: 40px;
+    text-align: center;
+    border-spacing: 30px 0;
+    margin: auto;
+    letter-spacing: 1px;
+    border-bottom: 1px solid transparent;
+    border-top: 1px solid transparent;
 }
 
 .bottompan {
-	left: 0px;
-	width: 100%;
-	padding-top: 1%;
-	border-top: 1px solid #40304a;
-	background-color: rgba(0, 0, 0, 0.2);
-	color: rgba(0, 0, 0, 0.8);
-	position: relative;
-	bottom: 0px;
+    left: 0px;
+    width: 100%;
+    padding-top: 1%;
+    border-top: 1px solid #40304a;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: rgba(0, 0, 0, 0.8);
+    position: relative;
+    bottom: 0px;
     padding-bottom: 1%;
 }
 
 .bottompan .search_field {
-	min-width: 430px;
-	max-width: 40%;
-	margin: -30px auto 0 auto;
-	position: relative;
+    min-width: 430px;
+    max-width: 40%;
+    margin: -30px auto 0 auto;
+    position: relative;
 }
 
 .bottompan .search_field form {
-	padding: 0 10px;
+    padding: 0 10px;
 }
 
 .bottompan .search_field form input[type='text'] {
-	width: 100%;
-	padding: 7px;
+    width: 100%;
+    padding: 7px;
 }
 
 .bottompan .search_field form input[type='submit'] {
-	width: 26px;
-	height: 100%;
-	background: url(/static/search_icon.png) no-repeat left 3px;
-	padding: 0;
-	border: none;
-	position: absolute;
-	right: 0px;
-	top: 2px;
-	text-indent: 9000px;
-	overflow: hidden;
+    width: 26px;
+    height: 100%;
+    background: url(/static/search_icon.png) no-repeat left 3px;
+    padding: 0;
+    border: none;
+    position: absolute;
+    right: 0px;
+    top: 2px;
+    text-indent: 9000px;
+    overflow: hidden;
 }
 
 :root {
-    --footer_height : 70px;
+    --footer_height: 70px;
 }
 
 .content {
@@ -145,11 +145,11 @@ a.link-forgot {
 }
 
 footer {
-   position: relative;
-   bottom: 0;
-   width: 100%;
-   height: var(--footer_height);
-   background: rgba(14,14,14,0.85);
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    height: var(--footer_height);
+    background: rgba(14, 14, 14, 0.85);
 }
 
 .footer_text {
@@ -158,10 +158,10 @@ footer {
     padding-top: 15px;
 }
 
-.reg{
+.reg {
     min-width: 430px;
-	max-width: 40%;
-	margin: auto;
+    max-width: 40%;
+    margin: auto;
 }
 
 .fieldWrapper {
@@ -193,40 +193,39 @@ div.fieldWrapper input, select {
     right: 50%;
     transform: translate(-50%, -50%);
     font-size: 15px;
-    border-width: 1px 1px ;
+    border-width: 1px 1px;
     border-style: solid none;
     border-color: white;
     border-radius: 4px;
     height: 35px;
     width: 160px;
-	color: black;
-	border: solid 1px #b7b7b7;
-	background: #fff;
-	background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ededed));
-	background: -moz-linear-gradient(top,  #fff,  #ededed);
-	background: -ms-linear-gradient(top,  #fff,  #ededed);
-    background-image: -o-linear-gradient(top,  #fff,  #ededed);
-	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ededed');
+    color: black;
+    border: solid 1px #b7b7b7;
+    background: #fff;
+    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ededed));
+    background: -moz-linear-gradient(top, #fff, #ededed);
+    background: -ms-linear-gradient(top, #fff, #ededed);
+    background-image: -o-linear-gradient(top, #fff, #ededed);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ededed');
 }
 
 .btn_regr:hover {
-	background: #ededed;
-	background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#dcdcdc));
-	background: -moz-linear-gradient(top,  #fff,  #dcdcdc);
-	background: -ms-linear-gradient(top,  #fff,  #dcdcdc);
-    background-image: -o-linear-gradient(top,  #fff,  #dcdcdc);
-	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#dcdcdc');
+    background: #ededed;
+    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#dcdcdc));
+    background: -moz-linear-gradient(top, #fff, #dcdcdc);
+    background: -ms-linear-gradient(top, #fff, #dcdcdc);
+    background-image: -o-linear-gradient(top, #fff, #dcdcdc);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#dcdcdc');
 }
 
 .btn_regr :active {
-	color: #999;
-	background: -webkit-gradient(linear, left top, left bottom, from(#ededed), to(#fff));
-	background: -moz-linear-gradient(top,  #ededed,  #fff);
-	background: -ms-linear-gradient(top,  #ededed,  #fff);
-    background-image: -o-linear-gradient(top,  #ededed,  #fff);
-	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#ffffff');
+    color: #999;
+    background: -webkit-gradient(linear, left top, left bottom, from(#ededed), to(#fff));
+    background: -moz-linear-gradient(top, #ededed, #fff);
+    background: -ms-linear-gradient(top, #ededed, #fff);
+    background-image: -o-linear-gradient(top, #ededed, #fff);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#ffffff');
 }
-
 
 #upbutton {
     background: url(/static/up.png) no-repeat top left;

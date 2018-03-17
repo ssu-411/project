@@ -1,0 +1,48 @@
+{% extends 'main.html' %}
+
+{% block content %}
+    Логин: {{ profile.user.username }} <br>
+    Мыло: {{ profile.user.email }} <br>
+    Полное имя: {{ profile.user.get_full_name }} <br>
+
+    Прочитанные книги:
+    <ul>
+        {% for book in profile.already_read.all %}
+            <li>{{ book.get_authors }} <a href="/book/{{ book.id }}">{{ book.title }}</a></li>
+        {% endfor %}
+    </ul>
+
+    Любимые жанры:
+    <ul>
+        {% for genre in profile.favorite_genres.all %}
+            <li>{{ genre.name }}</li>
+        {% endfor %}
+    </ul>
+
+    Любимые авторы:
+    <ul>
+        {% for author in profile.favorite_author.all %}
+            <li>{{ author.name }}</li>
+        {% endfor %}
+    </ul>
+
+    {% if form %}
+        {% if changed %}
+            Пароль успешно сменен
+        {% endif %}
+        <form method="post">
+            Смена пароля
+            {% csrf_token %}
+            {% for field in form %}
+                <p>
+                    {{ field.label_tag }} <br>
+                    {{ field }}
+                </p>
+                {% for error in field.errors %}
+                    <p style="color: red">{{ error }}</p>
+                {% endfor %}
+            {% endfor %}
+            <button type="submit">Подтвердить</button>
+        </form>
+    {% endif %}
+{% endblock %}
