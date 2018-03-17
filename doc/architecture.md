@@ -60,4 +60,6 @@ The necessary files:
 * **to_read.csv** - the books marked as to read by users.
 
 All .csv files and book images are provided in archive 
-/bookshelf/media/DBData.zip.
+/bookshelf/media/DBData.zip. But there no large images in it. They are in 
+[this](https://drive.google.com/open?id=1YlxVCuHfbvmCMenha7C2QxwMJXoNpCSA) 
+archive.

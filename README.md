@@ -2,7 +2,7 @@
 [![Build Status](https://travis-ci.org/ssu-411/project.svg?branch=master)](https://travis-ci.org/ssu-411/project)
 
 Bookshelf is a simple web app for book choices recommendation. The goal of the app is to provide users with a list of new books based on their preferences. The previously read literature, favorite genre, rating and comments of other readers will be taken into consideration for creating a list.
-***
+**
 The work is based on `machine learning` algorithms and the `Python` programming language. recommended operating system is `Linux`.
 
 ## Information
@@ -51,7 +51,12 @@ Move the books folder from goodbooks to media folder:
 ```
 mv goodbooks/books ./
 ```
-this needs to have the images shown in the application.
+this needs to have the images shown in the application. 
+
+**Note:** Because of too large size big images was removed from this archive, but 
+if you want them, you can download them from 
+[here](https://drive.google.com/open?id=1YlxVCuHfbvmCMenha7C2QxwMJXoNpCSA). There 
+only books folder in it which need to be moved to media folder.
 
 Then move back to bookshelf folder. The loading of full data from .csv files can 
 take more than hour. So, if you don't have time, run this command:

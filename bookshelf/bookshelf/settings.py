@@ -136,8 +136,8 @@ LOGOUT_REDIRECT_URL = '/'
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # https://docs.djangoproject.com/en/2.0/topics/files
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 # URL that handles the media served from MEDIA_ROOT.
 
-MEDIA_URS = '/media/'
+MEDIA_URL = '/media/'

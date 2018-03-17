@@ -137,9 +137,14 @@ class Command(BaseCommand):
 
             book = Book(id=row[1], title=bTitle, rating=bRating)
             smallImagePath = "/".join(row[22].split("/")[3:])
-            book.smallImage = os.path.join(settings.MEDIA_ROOT, smallImagePath)
-            bigImagePath ="/".join(row[21].split("/")[3:])
-            book.bigImage = os.path.join(settings.MEDIA_ROOT, bigImagePath)
+            book.smallImage = smallImagePath #os.path.join(settings.MEDIA_ROOT, smallImagePath)
+            middleImagePath ="/".join(row[21].split("/")[3:])
+            book.middleImage = middleImagePath  #os.path.join(settings.MEDIA_ROOT, middleImagePath)
+            bigImagePathMas = row[21].split("/")[3:]
+            bigImagePathMas[1] = bigImagePathMas[1].replace("m", "l")
+            bigImagePath = "/".join(bigImagePathMas)
+            book.bigImage = bigImagePath  #os.path.join(settings.MEDIA_ROOT, bigImagePath)
+
             book.save()
             ## Rating counting
             step = rtLen // 2
