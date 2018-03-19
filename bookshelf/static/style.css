@@ -43,6 +43,7 @@ a.link {
 }
 
 a:hover {
+    color: #D3D3D3;
     text-decoration: underline;
 }
 
@@ -126,7 +127,7 @@ a.link-forgot {
 	padding: 0;
 	border: none;
 	position: absolute;
-	right: 0px;
+	right: 0;
 	top: 2px;
 	text-indent: 9000px;
 	overflow: hidden;
@@ -153,8 +154,10 @@ footer {
 }
 
 .footer_text {
+    position: absolute;
     color: white;
     text-align: center;
+    width: 100%;
     padding-top: 15px;
 }
 
@@ -227,7 +230,6 @@ div.fieldWrapper input, select {
 	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#ffffff');
 }
 
-
 #upbutton {
     background: url(/static/up.png) no-repeat top left;
     height: 60px;
@@ -238,4 +240,112 @@ div.fieldWrapper input, select {
     display: none;
     position: fixed;
     z-index: 999;
+}
+
+.oops{
+    height: 210px;
+    width: 260px;
+    background: url(/static/oops.png) no-repeat;
+    background-size: contain;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-top: 70px;
+    transform: translate(-50%);
+}
+
+.book {
+    /*width: 280px;*/
+    /*width: 30%;*/
+    min-width: 200px;
+}
+
+.book img {
+    position: relative;
+    max-width: 100%;
+    height: auto;
+}
+
+.book-inf {
+    min-width: 250px;
+    vertical-align: top;
+}
+
+.block{ min-width: 200px; }
+
+tr.border_top td {
+  border-top: 1pt solid #848484;
+  padding-bottom: 10px;
+}
+
+ul{
+    list-style: none;
+}
+
+.rating {
+    float:left;
+}
+
+.rating:not(:checked) > input {
+    position: absolute;
+    top: -9999px;
+    clip: rect(0,0,0,0);
+}
+
+.rating:not(:checked) > label {
+    float: right;
+    width :1em;
+    padding: 0 .1em;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+    font-size: 200%;
+    line-height: 1.2;
+    color: #ddd;
+    text-shadow: 1px 1px #bbb, 2px 2px #666, .1em .1em .2em rgba(0,0,0,.5);
+}
+
+.rating:not(:checked) > label:before {
+    content: '★ ';
+}
+
+.rating > input:checked ~ label {
+    color: #f70;
+    text-shadow:1px 1px #c60, 2px 2px #940, .1em .1em .2em rgba(0,0,0,.5);
+}
+
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+    color: gold;
+    text-shadow:1px 1px goldenrod, 2px 2px #B57340, .1em .1em .2em rgba(0,0,0,.5);
+}
+
+.rating > input:checked + label:hover,
+.rating > input:checked + label:hover ~ label,
+.rating > input:checked ~ label:hover,
+.rating > input:checked ~ label:hover ~ label,
+.rating > label:hover ~ input:checked ~ label {
+    color: #ea0;
+    text-shadow:1px 1px goldenrod, 2px 2px #B57340, .1em .1em .2em rgba(0,0,0,.5);
+}
+
+.rating > label:active {
+    position: relative;
+    top: 2px;
+    left: 2px;
+}
+
+.book-title {
+    font-size: large;
+    font-weight: bold;
+}
+
+.title-link {
+    text-decoration: none;
+    color: black;
+}
+
+a.title-link:hover {
+    color: darkred;
+    text-decoration: none;
 }
