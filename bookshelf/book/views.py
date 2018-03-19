@@ -6,7 +6,7 @@ from django.views.generic import TemplateView
 
 from book.models import Book
 
-BooksOnPage = 5
+BooksOnPage = 10
 register = Library()
 
 

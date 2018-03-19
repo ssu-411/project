@@ -1,23 +1,64 @@
 {% extends 'main.html' %}
 
+{% load static %}
+
 {% block content %}
-<p>
-    Когда-нибудь здесь будет картинка
-</p>
+    <table class="block" align="center">
+        <tr>
+            <td rowspan="2" style="padding-bottom: 10px; padding-right: 10px">
+                <div class="book">
+                    {% if book.bigImage %}
+                        {{ book.bigImage }}
+                    {% else %}
+                        <img class="book" src="{% static 'nfbook.png' %}">
+                    {% endif %}
+                </div>
+            </td>
+            <td valign="top" style="padding-bottom:10px">
+                <div class="book-inf">
+                    <h3>{{ book.title }} </h3> <br>
+                    {% for author in book.author.all %}
+                        <strong>Автор:</strong> {{ author }}
+                    {% endfor %} <br>
+                    <strong>Год:</strong> {{ book.date }} <br>
+                    <strong>Издательство:</strong> {{ book.publisher }} <br>
+                    <strong>Рейтинг:</strong> {{ book.rating }} <br>
+                    <strong>Жанр:</strong>
+                    <span>
+                    {% for genre in book.genre.all %}
+                        {{ genre }}
+                    {% endfor %}
+                    </span>
+                    <br>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="padding-bottom:10px">
+                <fieldset class="rating">
+                    <legend>Ваша оценка:</legend>
+                    <input type="radio" id="star5" name="rating" value="5"/><label for="star5" title="Отлично!">5
+                    stars</label>
+                    <input type="radio" id="star4" name="rating" value="4"/><label for="star4" title="Хорошо">4
+                    stars</label>
+                    <input type="radio" id="star3" name="rating" value="3"/><label for="star3" title="Неплохо">3
+                    stars</label>
+                    <input type="radio" id="star2" name="rating" value="2"/><label for="star2" title="Так себе">2
+                    stars</label>
+                    <input type="radio" id="star1" name="rating" value="1"/><label for="star1" title="Отстой">1
+                    star</label>
+                </fieldset>
+            </td>
+        </tr>
+        <tr class="border_top">
+            <td colspan="2">
+                {% if book.img %}
+                    {{ book.description }}
+                {% else %}
+                    <p> Описание книги отсутствует</p>
+                {% endif %}
+            </td>
+        </tr>
+    </table>
 
-{{ book.title }} <br>
-{% for author in book.author.all %}
-    {{ author }}
-{% endfor %} <br>
-Год {{ book.date }} <br>
-Издательство: {{ book.publisher }} <br>
-Оценка: {{ book.rating }} <br>
-
-Жанры:
-{% for genre in book.genre.all %}
-    {{ genre }}
-{% endfor %} <br>
-<p>
-    Далее когда-нибудь будет описание:
-</p>
 {% endblock %}
