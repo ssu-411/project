@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.contrib.auth.views import LoginView
 from django.urls import path, include
 from book.views import BooksView, BookView
+from registration.views import CustomPasswordChangeView
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -29,4 +30,5 @@ urlpatterns = [
     path('books', BooksView.as_view()),
     path('books/p<page>', BooksView.as_view()),
     path('book/<id>', BookView.as_view()),
+    path('user/<id>', CustomPasswordChangeView.as_view()),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

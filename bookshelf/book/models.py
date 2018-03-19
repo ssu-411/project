@@ -46,6 +46,9 @@ class Book(models.Model):
     def __str__(self):
         return self.title
 
+    def get_authors(self):
+        return ', '.join([x.name for x in self.author.iterator()])
+
 
 class Publisher(models.Model):
     name = models.CharField(max_length=50)
