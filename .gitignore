@@ -1,5 +1,6 @@
 # Files that havn't be moved to the remote repository
 *.swp
 db.sqlite3
-__pycache__/
+*__pycache__/
+.idea/
 myenv/
