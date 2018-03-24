@@ -15,9 +15,9 @@ class Book(models.Model):
     date = models.PositiveIntegerField(null=True, blank=True)
     publisher = models.ForeignKey('Publisher', on_delete=models.SET_NULL, null=True, blank=True)
     genre = models.ManyToManyField('Genre', blank=True)
-    smallImage = models.ImageField(upload_to='books', default='books/None/no-imgs.jpg', blank=True)
-    middleImage = models.ImageField(upload_to='books', default='books/None/no-imgm.jpg', blank=True)
-    bigImage = models.ImageField(upload_to='books', default='books/None/no-imgl.jpg', blank=True)
+    smallImage = models.ImageField(upload_to='books', blank=True)
+    middleImage = models.ImageField(upload_to='books', blank=True)
+    bigImage = models.ImageField(upload_to='books', blank=True)
 
     def smallImage_tag(self):
         if default_storage.exists(self.smallImage):

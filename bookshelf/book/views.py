@@ -6,7 +6,9 @@ from django.views.generic import TemplateView
 
 from book.models import Book
 
-BooksOnPage = 10
+ROWS_NUM = 5
+BOOKS_IN_ROW = 5
+BOOKS_ON_PAGE = ROWS_NUM * BOOKS_IN_ROW
 register = Library()
 
 
@@ -20,12 +22,14 @@ class BooksView(TemplateView):
 
     def get_context_data(self, page=0, **kwargs):
         context = super().get_context_data(**kwargs)
-        page = int(page)
+        page = min(int(page), Book.objects.count() // BOOKS_ON_PAGE)
         context['page'] = page
         context['prev_page'] = str(page - 1)
-        start = page * BooksOnPage
-        context['books'] = Book.objects.all()[start:start + BooksOnPage]
-        if len(Book.objects.all()) > page + BooksOnPage:
+        start = page * BOOKS_ON_PAGE
+        books = Book.objects.all()[start:start + BOOKS_ON_PAGE]
+
+        context['books'] = [books[x * BOOKS_IN_ROW: x * BOOKS_IN_ROW + BOOKS_IN_ROW] for x in range(ROWS_NUM)]
+        if len(Book.objects.all()) > start + BOOKS_ON_PAGE:
             context['next_page'] = page + 1
         return context
 

@@ -3,52 +3,42 @@
 {% load static %}
 
 {% block content %}
-
     <table class="block" align="center">
-
-        {% for book in books %}
+        {% for bookrow in books %}
             <tr>
-                <td>
-                    <div class="book" align="center">
-                        {% if book.bigImage %}
-                            {{ book.bigImage }}
-                        {% else %}
-                            <img class="book" src="{% static 'nfbook.png' %}">
-                        {% endif %}
-                    </div>
-                </td>
-                <td valign="top">
-                    <div class="book-inf">
-                        <a class="title-link" href="/book/{{ book.id }}">
-                            <div class="book-title">
-                                {{ book.title }}
-                            </div>
+                {% for book in bookrow %}
+                    <td align="center" style="width: 200px">
+                        <a href="/book/{{ book.id }}">
+                            {% if book.middleImage %}
+                                <img src="{{ book.middleImage.url }}"/>
+                            {% else %}
+                                <img src="{% static 'nfbookm.jpg' %}">
+                            {% endif %}
                         </a>
-                        <br>
-                        {% for author in book.author.all %}
-                            {{ author }}
-                        {% endfor %}
-                        <br> <br>
-                        Тут когда-нибудь будет краткое или урезанное описание.
-                        Но сейчас этим заниматься никто не будет.
-                        <br>
-                        {% if book.description %}
-                            {{ book.description }}
-                        {% else %}
-                            Описание книги отсутствет
-                            <br>
-                        {% endif %}
-                    </div>
-                </td>
+                        <div>
+                            <a class="title-link" href="/book/{{ book.id }}">
+                                <div class="books-title">
+                                    {{ book.title }}
+                                </div>
+                            </a>
+                            <div style="font-size: small">
+                                {% for author in book.author.all %}
+                                    {{ author }}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </td>
+
+                {% endfor %}
             </tr>
         {% endfor %}
 
     </table>
 
-    <p>
+    <p align="center">
         {% if prev_page != "-1" %}
             <a style="text-decoration: none" href="/books/p{{ prev_page }}">
-            <img src="{% static 'l.png' %}" alt="Предыдущая">
+                <img src="{% static 'l.png' %}" alt="Предыдущая">
             </a>
         {% endif %}
 

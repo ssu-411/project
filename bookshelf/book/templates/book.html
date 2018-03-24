@@ -8,17 +8,18 @@
             <td rowspan="2" style="padding-bottom: 10px; padding-right: 10px">
                 <div class="book">
                     {% if book.bigImage %}
-                        {{ book.bigImage }}
+                        <img class="book" src="{{ book.bigImage.url }}"/>
                     {% else %}
-                        <img class="book" src="{% static 'nfbook.png' %}">
+                        <img class="book" src="{% static 'nfbookl.jpg' %}">
                     {% endif %}
                 </div>
             </td>
             <td valign="top" style="padding-bottom:10px">
                 <div class="book-inf">
                     <h3>{{ book.title }} </h3> <br>
+                    <strong>Автор:</strong>
                     {% for author in book.author.all %}
-                        <strong>Автор:</strong> {{ author }}
+                        {{ author }}
                     {% endfor %} <br>
                     <strong>Год:</strong> {{ book.date }} <br>
                     <strong>Издательство:</strong> {{ book.publisher }} <br>
@@ -50,15 +51,15 @@
                 </fieldset>
             </td>
         </tr>
-        <tr class="border_top">
-            <td colspan="2">
-                {% if book.img %}
-                    {{ book.description }}
-                {% else %}
-                    <p> Описание книги отсутствует</p>
-                {% endif %}
-            </td>
-        </tr>
+        {#        <tr class="border_top">#}
+        {#            <td colspan="2">#}
+        {#                {% if book.img %}#}
+        {#                    {{ book.description }}#}
+        {#                {% else %}#}
+        {#                    <p> Описание книги отсутствует</p>#}
+        {#                {% endif %}#}
+        {#            </td>#}
+        {#        </tr>#}
     </table>
 
 {% endblock %}
