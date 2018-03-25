@@ -4,4 +4,6 @@ db.sqlite3
 *__pycache__/
 .idea/
 myenv/
-/bookshelf/media/
+bookshelf/media/books
+bookshelf/media/goodbooks
+bookshelf/media/DBData.zip

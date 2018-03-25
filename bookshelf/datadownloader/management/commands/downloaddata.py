@@ -37,6 +37,9 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         necessaryFiles = {'books.csv':'', 'book_tags.csv':'', 'ratings.csv':'', 'tags.csv':'', 'to_read.csv':''}
 
+        if not os.path.exists(settings.MEDIA_ROOT):
+            os.makedirs(settings.MEDIA_ROOT)
+
         pathToLoad = os.path.join(settings.MEDIA_ROOT, "DBData.zip")
         if not os.path.exists(pathToLoad):
             self.loadData(pathToLoad)
