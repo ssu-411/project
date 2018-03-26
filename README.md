@@ -2,7 +2,7 @@
 [![Build Status](https://travis-ci.org/ssu-411/project.svg?branch=master)](https://travis-ci.org/ssu-411/project)
 
 Bookshelf is a simple web app for book choices recommendation. The goal of the app is to provide users with a list of new books based on their preferences. The previously read literature, favorite genre, rating and comments of other readers will be taken into consideration for creating a list.
-**
+---
 The work is based on `machine learning` algorithms and the `Python` programming language. recommended operating system is `Linux`.
 
 ## Information
@@ -42,32 +42,24 @@ Run following commands to reflect data base models in a migration:
 python manage.py migrate
 ```
 
-In order to load data from .csv files go to the bookshelf/media folder. There 
-will be an archive DBData.zip. Unzip it there:
-```
-unzip DBData.zip
-```
-Move the books folder from goodbooks to media folder:
-```
-mv goodbooks/books ./
-```
-this needs to have the images shown in the application. 
+Move to bookshelf folder. Firstly, the DBData.zip archive will be loaded from
+the web. It contains images and necessary .csv files with data for our
+database. Be sure that ``bookshelf/media`` folder is empty or errors may occur.
 
-**Note:** Because of too large size big images was removed from this archive, but 
-if you want them, you can download them from 
-[here](https://drive.google.com/open?id=1YlxVCuHfbvmCMenha7C2QxwMJXoNpCSA). There 
-only books folder in it which need to be moved to media folder.
+Secondly, the loading of data from .csv files will begin. The loading of full
+data from .csv files can take more than hour. So, if you don't have time, run
+this command:
 
-Then move back to bookshelf folder. The loading of full data from .csv files can 
-take more than hour. So, if you don't have time, run this command:
 ```
-python manage.py downloaddata media/goodbooks --books_number 500 --users_number 10000 --no-warnings --no-error-messages 
+python manage.py downloaddata --books_number 100 --users_number 1000 --no-warnings --no-error-messages 
 ```
-It will create 10000 users and load data for first 500 books.
+It will create 1000 users and load data for first 100 books. The ratings for
+books will be calculated according to data provided by users, so if there are
+small number of users than there are few ratings.
 
-But, if you have time than just run this:
+If you have time than just run this:
 ```
-python manage.py downloaddata media/goodbooks
+python manage.py downloaddata
 ```
 and all 10000 books data will be loaded and all needed users will be created. 
 Notice that command `downloaddata` should be run on clean database or errors may 

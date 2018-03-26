@@ -1,12 +1,23 @@
 {% extends 'main.html' %}
 
 {% block content %}
-    <h2>Вход</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <p class="submit">
-            <button type="submit">ок</button>
-        </p>
-    </form>
+<h2>Вход</h2>
+<form method="post">
+    {% csrf_token %}
+    <div style="text-align: center">
+        {{ form.non_field_errors }}
+    </div>
+    <p align="center">
+        <label for="id_username">Логин:</label>
+        {{ form.username }}
+    </p>
+    <p align="center">
+        <label for="id_password">Пароль:</label>
+        {{ form.password }}
+    </p>
+    {{ form.prev_page }}
+    <p align="center">
+        <button type="submit">Войти</button>
+    </p>
+</form>
 {% endblock content %}

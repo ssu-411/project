@@ -1,0 +1,111 @@
+{% extends 'main.html' %}
+
+{% load static %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="photo-container" style="background-image:url(/media/citations/hp.jpg);"></div>
+                <h2>Гарри Поттер</h2>
+                <div class="slide">
+                    <p> - У тебя коробка стояла, я попробовал одну штучку.</p>
+                    <p> - Или двадцать одну...</p>
+                </div>
+            </div>
+            <div class="col">
+                <div class="photo-container" style="background-image:url(/media/citations/gg.jpg);"></div>
+                <h2>Великий Гэтсби</h2>
+                <div class="slide">
+                    <p>Это большое преимущество – быть трезвой, когда все кругом пьяны. Не наговоришь лишнего, а
+                        главное, если вздумается что-нибудь себе позволить, сумеешь выбрать время, когда никто уже
+                        ничего не замечает или всем наплевать.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="photo-container" style="background-image:url(/media/citations/tw.jpg);"></div>
+                <h2>Сумерки</h2>
+                <div class="slide">
+                    <p>Ад не так-то и плох, если у тебя есть свой личный ангел.</p>
+                </div>
+            </div>
+            <div class="col">
+                <div class="photo-container" style="background-image:url(/media/citations/lop.jpg);"></div>
+                <h2>Жизнь Пи</h2>
+                <div class="slide">
+                    <p>Мы меняемся под влиянием людей, которых встречаем, и порой настолько, что сами себя не
+                        узнаем.</p>
+                </div>
+            </div>
+            <div class="col">
+                <div class="photo-container" style="background-image:url(/media/citations/dc.jpg);"></div>
+                <h2>Код Да Винчи</h2>
+                <div class="slide">
+                    <p>Слепой видит то, что хочет видеть.</p>
+                </div>
+            </div>
+            <div class="col">
+                <div class="photo-container" style="background-image:url(/media/citations/bt.jpg);"></div>
+                <h2>Книжный вор</h2>
+                <div class="slide">
+                    <p>Снежок в лицо - бесспорно идеальное начало верной дружбы.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="photo-container"
+                     style="background-image:url(/media/citations/lw.jpg);"></div>
+                <h2> Хроники Нарнии</h2>
+                <div class="slide">
+                    <p>... когда-нибудь ты дорастёшь до такого дня, когда вновь начнёшь читать сказки.</p>
+                </div>
+            </div>
+            <div class="col">
+                <div class="photo-container"
+                     style="background-image:url(/media/citations/th.jpg);"></div>
+                <h2>Прислуга</h2>
+                <div class="slide">
+                    <p>Не тратьте время на очевидные вещи. Пишите о том, что Вас волнует, особенно если никому больше до
+                        этого нет дела.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h2 style="text-align: center">ТОП-10 самых популярных и любимых читателями книг</h2>
+    <table class="block" align="center">
+        {% for bookrow in books %}
+            <tr>
+                {% for book in bookrow %}
+                    <td align="center" style="width: 200px">
+                        <a href="/book/{{ book.id }}">
+                            {% if book.middleImage %}
+                                <img src="{{ book.middleImage.url }}"/>
+                            {% else %}
+                                <img src="{% static 'nfbookm.jpg' %}">
+                            {% endif %}
+                        </a>
+                        <div>
+                            <a class="title-link" href="/book/{{ book.id }}">
+                                <div class="books-title">
+                                    {{ book.title }}
+                                </div>
+                            </a>
+                            <div style="font-size: small">
+                                {% for author in book.author.all %}
+                                    {{ author }}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+
+    </table>
+
+{% endblock content %}

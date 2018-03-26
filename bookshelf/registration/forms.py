@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.forms import PasswordChangeForm, UsernameField
 from django.forms import CharField, PasswordInput
 
 from .models import User, MyUser
@@ -37,3 +37,17 @@ class PasswordChangeCustomForm(PasswordChangeForm):
                                   'class': 'form-control'}),
                               error_messages={
                                   'required': 'Пароль не может быть пустым'})
+
+
+class AuthForm(forms.Form):
+    prev_page = CharField(widget=forms.HiddenInput(), required=False)
+    password = forms.CharField(
+        label='Пароль',
+        strip=False,
+        required=True,
+        widget=forms.PasswordInput,
+    )
+    username = UsernameField(
+        max_length=254,
+        widget=forms.TextInput(attrs={'autofocus': True}),
+    )

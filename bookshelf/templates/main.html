@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html style="font-family:Georgia" lang="ru">
+<html>
 {% load static %}
 
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="{% static 'style.css' %}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link href="http://allfont.ru/allfont.css?fonts=droid-serif" rel="stylesheet" type="text/css" />
+
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
@@ -25,14 +26,13 @@
     <div class="head_right">
         {% if user.is_authenticated %}
             Привет, <a class="link" href="/user/{{ user.id }}">{{ user.username }}</a>!
-            <p></p><a class="link" href="/user/{{ user.id }}">Личный кабинет</a>
-            <a class="link" href="/logout/">Выйти</a></p>
+            <p><a class="link" href="/logout/">Выйти</a></p>
         {% else %}
             <a class="link" onclick="show()" style="cursor:pointer">Вход</a> /
             <a class="link" href="/register">Регистрация</a>
 
             <div class="login-form" id="form" style="display:none">
-                <form method="post">
+                <form action="/login/" method="post">
                     {% csrf_token %}
                     <p>
                         <input type="text" name="username" autofocus="" maxlength="254" required="" id="id_username"

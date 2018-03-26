@@ -1,5 +1,18 @@
 body {
     margin: 0;
+    font-family: 'Droid Serif', arial;
+    font-size: 11pt;
+}
+
+button {
+    font-family: 'Droid Serif', arial;
+}
+
+button, select, input:active, button, input:focus {
+  outline: none !important;
+}
+button, select, input::-moz-focus-inner {
+  border: 0 !important;
 }
 
 header, section, footer, aside, nav, article {
@@ -72,12 +85,32 @@ a.link-forgot {
 .button {
     height: 25px;
     width: 55px;
-    background-color: #F5DEB3;
-    border-width: 1px 1px;
-    border-style: solid none;
-    border-color: white;
+    border: solid 1px #b7b7b7;
+    background: #fff;
+    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ededed));
+    background: -moz-linear-gradient(top, #fff, #ededed);
+    background: -ms-linear-gradient(top, #fff, #ededed);
+    background-image: -o-linear-gradient(top, #fff, #ededed);
     border-radius: 4px;
     color: black;
+}
+
+.button:hover {
+    background: #ededed;
+    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#dcdcdc));
+    background: -moz-linear-gradient(top, #fff, #dcdcdc);
+    background: -ms-linear-gradient(top, #fff, #dcdcdc);
+    background-image: -o-linear-gradient(top, #fff, #dcdcdc);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#dcdcdc');
+}
+
+.button:active {
+    color: #999;
+    background: -webkit-gradient(linear, left top, left bottom, from(#ededed), to(#fff));
+    background: -moz-linear-gradient(top, #ededed, #fff);
+    background: -ms-linear-gradient(top, #ededed, #fff);
+    background-image: -o-linear-gradient(top, #ededed, #fff);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#ffffff');
 }
 
 .nav {
@@ -101,6 +134,7 @@ a.link-forgot {
     color: rgba(0, 0, 0, 0.8);
     position: relative;
     bottom: 0px;
+    z-index: 2;
     padding-bottom: 1%;
 }
 
@@ -127,7 +161,8 @@ a.link-forgot {
     padding: 0;
     border: none;
     position: absolute;
-    right: 0px;
+    z-index: 1;
+    right: 18px;
     top: 2px;
     text-indent: 9000px;
     overflow: hidden;
@@ -167,6 +202,7 @@ footer {
     margin: auto;
 }
 
+
 .profile {
     min-width: 430px;
     max-width: 40%;
@@ -176,11 +212,39 @@ footer {
 .fieldWrapper {
     padding-top: 5px;
     padding-bottom: 5px;
+
+.reg_form label {
+    grid-column: 1 / 2;
+
 }
 
-div.fieldWrapper input, select {
-    float: right;
-    width: 220px;
+.reg_form input, select {
+    grid-column: 2 / 3;
+    margin-bottom: 1rem;
+}
+
+.reg_form {
+    display: grid;
+}
+
+
+input {
+    -webkit-appearance: textfield;
+    -moz-appearance: textfield;
+    background-color: white;
+    cursor: text;
+    padding: 1px;
+    border-width: 2px;
+    border-style: inset;
+    border-color: initial;
+    border-image: initial;
+}
+
+select {
+    border-radius: 0px;
+    border-color: rgb(169, 169, 169);
+    -webkit-appearance: menulist;
+    -mos-appearance: menulist;
 }
 
 .superstar {
@@ -191,17 +255,17 @@ div.fieldWrapper input, select {
 }
 
 .errorlist {
-    font-size: 13px;
+    font-size: 12px;
     color: red;
 }
 
 .btn_regr {
+    text-align: center;
     margin: 20px auto 0 auto;
     position: relative;
     left: 50%;
     right: 50%;
     transform: translate(-50%, -50%);
-    font-size: 15px;
     border-width: 1px 1px;
     border-style: solid none;
     border-color: white;
@@ -261,8 +325,6 @@ div.fieldWrapper input, select {
 }
 
 .book {
-    /*width: 280px;*/
-    /*width: 30%;*/
     min-width: 200px;
 }
 
@@ -348,6 +410,11 @@ ul {
     font-weight: bold;
 }
 
+.books-title {
+    font-size: smaller;
+    font-weight: bold;
+}
+
 .title-link {
     text-decoration: none;
     color: black;
@@ -357,6 +424,7 @@ a.title-link:hover {
     color: darkred;
     text-decoration: none;
 }
+
 
 .profile_div {
     display: inline;
@@ -373,4 +441,128 @@ a.title-link:hover {
     font-weight: bold;
     border-style: solid none;
     border-radius: 4px;
+
+.col {
+    overflow: hidden;
+    position: relative;
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    -webkit-transition: all 0.275s ease-in-out, visibility 0s 0.275s;
+    transition: all 0.275s ease-in-out, visibility 0s 0.275s;
+    visibility: hidden;
+    will-change: transform;
+    -webkit-transform: translateY(100%);
+    transform: translateY(100%);
+}
+
+.row:hover ~ .row .slide {
+    -webkit-transform: translateY(-100%);
+    transform: translateY(-100%);
+}
+
+.row:hover .slide {
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%);
+}
+
+.row:hover .col:hover ~ .col .slide {
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%);
+}
+
+.row:hover .col:hover .slide {
+    -webkit-transform: none;
+    transform: none;
+    visibility: visible;
+    -webkit-transition-delay: 0s;
+    transition-delay: 0s;
+}
+
+* {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.container {
+    margin: 0 auto;
+    padding: 2rem;
+    max-width: 1200px;
+}
+
+.row {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.col {
+    color: #fff;
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    min-height: 260px;
+    position: relative;
+}
+
+.col h2 {
+    font-weight: 300;
+    font-size: 14pt;
+    line-height: 1.25;
+    margin: 0;
+    position: absolute;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 0;
+}
+
+.col:nth-child(2) {
+    min-width: 20%;
+}
+
+.col:nth-child(4) {
+    min-width: 33%;
+}
+
+.col:nth-child(3) + .col:nth-child(3) {
+    min-width: 50%;
+}
+
+.photo-container {
+    background: #0f0523 50% 50% / cover;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    -webkit-transition: 1s;
+    transition: 1s;
+    -webkit-transform-origin: bottom right;
+    transform-origin: bottom right;
+}
+
+.photo-container::before {
+    background: -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(rgba(100, 76, 44, 0.5)), to(#000000));
+    background: linear-gradient(transparent, rgba(100, 76, 44, 0.5), #000000);
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.col:hover .photo-container {
+    -webkit-transform: scale(1.25);
+    transform: scale(1.25);
+}
+
+.slide {
+    background: rgba(107, 69, 60, 0.8);
+    padding: 0 1.5rem;
 }
