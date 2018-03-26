@@ -17,14 +17,14 @@ from django.contrib import admin
 from django.contrib.auth.views import LoginView
 from django.urls import path, include
 from book.views import BooksView, BookView
-from registration.views import CustomPasswordChangeView
+from registration.views import CustomPasswordChangeView, Login
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('register/', include('registration.urls')),
-    path('login/', LoginView.as_view(template_name='login.html')),
+    path('login/', Login.as_view(template_name='login.html')),
     path('', LoginView.as_view(template_name='main.html')),
     path('', include('django.contrib.auth.urls')),
     path('books', BooksView.as_view()),
