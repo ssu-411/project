@@ -24,8 +24,9 @@
 <header class="top_section">
     <div class="head_right">
         {% if user.is_authenticated %}
-            Привет, <a href="/user/{{ user.id }}">{{ user.username }} </a>!
-            <p><a class="link" href="/logout/">Выйти</a></p>
+            Привет, <a class="link" href="/user/{{ user.id }}">{{ user.username }}</a>!
+            <p></p><a class="link" href="/user/{{ user.id }}">Личный кабинет</a>
+            <a class="link" href="/logout/">Выйти</a></p>
         {% else %}
             <a class="link" onclick="show()" style="cursor:pointer">Вход</a> /
             <a class="link" href="/register">Регистрация</a>

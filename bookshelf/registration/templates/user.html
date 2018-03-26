@@ -1,48 +1,73 @@
 {% extends 'main.html' %}
 
+{% block title %} Profile {% endblock %}
+
+{% load static %}
+
 {% block content %}
-    Логин: {{ profile.user.username }} <br>
-    Мыло: {{ profile.user.email }} <br>
-    Полное имя: {{ profile.user.get_full_name }} <br>
+    <h2 style="text-align: center">Личный кабинет</h2>
+    <div class="profile">
+        <div class="fieldWrapper">
+            <div class="profile_div">Логин:</div>
+            {{ profile.user.username }}
+        </div>
 
-    Прочитанные книги:
-    <ul>
-        {% for book in profile.already_read.all %}
-            <li>{{ book.get_authors }} <a href="/book/{{ book.id }}">{{ book.title }}</a></li>
-        {% endfor %}
-    </ul>
+        <div class="fieldWrapper">
+            <div class="profile_div">e-mail:</div>
+            {{ profile.user.email }}
+        </div>
 
-    Любимые жанры:
-    <ul>
-        {% for genre in profile.favorite_genres.all %}
-            <li>{{ genre.name }}</li>
-        {% endfor %}
-    </ul>
+        <div class="fieldWrapper">
+            <div class="profile_div">Полное имя:</div>
+            {{ profile.user.get_full_name }}
+        </div>
 
-    Любимые авторы:
-    <ul>
-        {% for author in profile.favorite_author.all %}
-            <li>{{ author.name }}</li>
-        {% endfor %}
-    </ul>
-
-    {% if form %}
-        {% if changed %}
-            Пароль успешно сменен
-        {% endif %}
-        <form method="post">
-            Смена пароля
-            {% csrf_token %}
-            {% for field in form %}
-                <p>
-                    {{ field.label_tag }} <br>
-                    {{ field }}
-                </p>
-                {% for error in field.errors %}
-                    <p style="color: red">{{ error }}</p>
+        <div class="fieldWrapper">
+            <div class="profile_div">Избранное:</div>
+            <ul>
+                {% for book in profile.to_read.all %}
+                    <li>{{ book.get_authors }} <a href="/book/{{ book.id }}">{{ book.title }}</a></li>
                 {% endfor %}
-            {% endfor %}
-            <button type="submit">Подтвердить</button>
-        </form>
-    {% endif %}
+            </ul>
+        </div>
+
+        <div class="fieldWrapper">
+            <div class="profile_div">Любимые жанры:</div>
+            <ul>
+                {% for genre in profile.favorite_genres.all %}
+                    <li>{{ genre.name }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="fieldWrapper">
+            <div class="profile_div">Любимые авторы:</div>
+            <ul>
+                {% for author in profile.favorite_author.all %}
+                    <li>{{ author.name }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <hr>
+        {% if form %}
+            {% if changed %}
+                Пароль успешно сменен
+            {% endif %}
+            <form method="post">
+                <div class="profile_div">Смена пароля</div>
+                {% csrf_token %}
+                {% for field in form %}
+                    <p>
+                        {{ field.label_tag }} <br>
+                        {{ field }}
+                    </p>
+                    {% for error in field.errors %}
+                        <p style="color: red">{{ error }}</p>
+                    {% endfor %}
+                {% endfor %}
+                <button type="submit" class="profile_btn">Подтвердить</button>
+            </form>
+        {% endif %}
+    </div>
 {% endblock %}
