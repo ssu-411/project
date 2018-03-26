@@ -84,11 +84,11 @@ class Command(BaseCommand):
         else:
             # tags means genres
             self.stdout.write("Collecting data from .csv files")
-            self.booksInfo = list(csv.reader(open(necessaryFiles['books.csv'])    , delimiter=','))
-            self.bookTags  = list(csv.reader(open(necessaryFiles['book_tags.csv']), delimiter=','))
-            self.ratings   = list(csv.reader(open(necessaryFiles['ratings.csv'])  , delimiter=','))
-            self.tags      = list(csv.reader(open(necessaryFiles['tags.csv'])     , delimiter=','))
-            self.toRead    = list(csv.reader(open(necessaryFiles['to_read.csv'])  , delimiter=','))
+            self.booksInfo = list(csv.reader(open(necessaryFiles['books.csv'], encoding='utf-8'), delimiter=','))
+            self.bookTags  = list(csv.reader(open(necessaryFiles['book_tags.csv'], encoding='utf-8'), delimiter=','))
+            self.ratings   = list(csv.reader(open(necessaryFiles['ratings.csv'], encoding='utf-8'), delimiter=','))
+            self.tags      = list(csv.reader(open(necessaryFiles['tags.csv'], encoding='utf-8'), delimiter=','))
+            self.toRead    = list(csv.reader(open(necessaryFiles['to_read.csv'], encoding='utf-8'), delimiter=','))
             self.stdout.write("Done. Start uploading data to DB")
 
             if options['nowarnings']:
@@ -219,15 +219,11 @@ class Command(BaseCommand):
             bRating = 0.0
 
             book = Book(id=row[1], title=bTitle, rating=bRating)
-            smallImagePath = "/".join(row[22].split("/")[3:])
-            book.smallImage = smallImagePath
-            middleImagePath ="/".join(row[21].split("/")[3:])
-            book.middleImage = middleImagePath
-            bigImagePathMas = row[21].split("/")[3:]
-            bigImagePathMas[1] = bigImagePathMas[1].replace("m", "l")
-            bigImagePath = "/".join(bigImagePathMas)
-            book.bigImage = bigImagePath
-
+            if row[22][8] != 's':
+                image_dir = "/".join(row[22].split("/")[3:])[:-1]
+                book.smallImage = image_dir + "s"
+                book.middleImage = image_dir + "m"
+                book.bigImage = image_dir + "l"
             book.save()
             ## Rating counting
             step = rtLen // 2
