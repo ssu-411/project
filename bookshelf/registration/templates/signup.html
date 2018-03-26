@@ -5,80 +5,54 @@
 {% block content %}
 <h2 style="text-align: center">Регистрация</h2>
 <div class="reg">
-    <form method="post">
+    <form class="reg_form" method="post">
         {% csrf_token %}
         {{ form.non_field_errors }}
 
         <!--Логин-->
-        <div class="fieldWrapper">
             <label for="{{ form.username.id_for_label }}">Логин * </label>
             {{ form.username }}
             {{ form.username.errors }}
-        </div>
-        <br>
 
         <!--Пароль-->
-        <div class="fieldWrapper">
             <label for="{{ form.password1.id_for_label }}">Пароль * </label>
             {{ form.password1 }}
-            <!--{{ form.password1.errors }}-->
             {{ form.password2.errors }}
-        </div>
-        <br>
 
         <!--Подтверждение пароля-->
-        <div class="fieldWrapper">
             <label for="{{ form.password2.id_for_label }}">Подтверждение пароля * </label>
             {{ form.password2 }}
 
-        </div>
-        <br>
-
         <!--Пол-->
-        <div class="fieldWrapper">
             <label for="{{ form2.gender.id_for_label }}">Пол * </label>
             {{ form2.gender }}
             {{ form2.gender.errors }}
-        </div>
-        <br>
 
         <!--Возраст-->
-        <div class="fieldWrapper">
             <label for="{{ form2.age.id_for_label }}">Возраст * </label>
             {{ form2.age }}
             {{ form2.age.errors }}
-        </div>
-        <br>
 
         <!--Имя-->
-        <div class="fieldWrapper">
             <label for="{{ form3.first_name.id_for_label }}">Имя </label>
             {{ form3.first_name }}
             {{ form3.first_name.errors }}
-        </div>
-        <br>
 
         <!--Фамилия-->
-        <div class="fieldWrapper">
             <label for="{{ form3.last_name.id_for_label }}">Фамилия </label>
             {{ form3.last_name }}
             {{ form3.last_name.errors }}
-        </div>
-        <br>
 
         <!--Email-->
-        <div class="fieldWrapper">
             <label for="{{ form3.email.id_for_label }}">Email </label>
             {{ form3.email }}
             {{ form3.email.errors }}
-        </div>
-        <br>
-
+    </form>
         <div class="superstar">
             Поля отмеченные звездочкой (*) обязательны для заполнения!
         </div>
 
         <button class="btn_regr" type="submit">Зарегестрироваться</button>
-    </form>
+
 </div>
 {% endblock %}
