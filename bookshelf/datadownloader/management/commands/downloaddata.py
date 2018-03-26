@@ -4,18 +4,27 @@ from book.models import Author, Book, Genre, Publisher
 from registration.models import MyUser, BookRating
 from django.contrib.auth.models import User
 from django.conf import settings
+
+from apiclient import discovery
+from apiclient.http import MediaIoBaseDownload
+from oauth2client import client
+from oauth2client import tools
+from oauth2client.file import Storage
+
+import io
+import httplib2
 import os
 import platform
 import csv
 import random
+import zipfile
 
 class Command(BaseCommand):
-    help = "Download data to database from specified path"
+    help = "Download data to database from the internet"
     showWarnings = True
     showErrors = True
 
     def add_arguments(self, parser):
-        parser.add_argument('data_path', type=str, help="setting path to .csv files")
         parser.add_argument('--books_number', '-bn', dest="BN", type=int,
                             required=False, help='first BN rows of book.csv file to be loaded to database')
         parser.add_argument('--users_number', '-un', dest='UN', type=int,
@@ -27,13 +36,37 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         necessaryFiles = {'books.csv':'', 'book_tags.csv':'', 'ratings.csv':'', 'tags.csv':'', 'to_read.csv':''}
-        path = options['data_path']
+
+        if not os.path.exists(settings.MEDIA_ROOT):
+            os.makedirs(settings.MEDIA_ROOT)
+
+        pathToLoad = os.path.join(settings.MEDIA_ROOT, "DBData.zip")
+        if not os.path.exists(pathToLoad):
+            self.loadData(pathToLoad)
+
+        if not os.path.exists(pathToLoad):
+            self.error("Archive {:s} was not downloaded".format(pathToLoad))
+            return
+
+        self.unzipArchive(pathToLoad, settings.MEDIA_ROOT)
+
+        path = os.path.join(settings.MEDIA_ROOT, "goodbooks")
+        pathImages = os.path.join(settings.MEDIA_ROOT, "books")
+
         if not os.path.exists(path):
             self.error("Path {:s} does not exist".format(path))
             return
         if not os.path.isdir(path):
             self.error("Path {:s} have to be a directory".format(path))
             return
+
+        if not os.path.exists(pathImages):
+            self.error("Path {:s} does not exist".format(pathImages))
+            return
+        if not os.path.isdir(pathImages):
+            self.error("Path {:s} have to be a directory".format(pathImages))
+            return
+
         root = []
         files = []
         for rt, dr, fl in os.walk(path):
@@ -82,8 +115,44 @@ class Command(BaseCommand):
                 return
 
             self.userCreation(usersNumber)
+            self.genresLoading()
             self.bookLoading(booksNumber)
             self.toReadLoading(usersNumber)
+
+    def loadData(self, pathToLoad):
+        self.stdout.write("Loading the data archive.")
+        archiveName = os.path.basename(pathToLoad)
+
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+
+        credential_dir = os.path.join(script_dir, '.credentials')
+        credential_path = os.path.join(credential_dir, "secretfile.json")
+
+        store = Storage(credential_path)
+        credentials = store.get()
+
+        http = credentials.authorize(httplib2.Http())
+        drive_service = discovery.build('drive', 'v3', http=http)
+
+        file_id = '1zRsyvLePWX2pRWiRdck9zms-0lScB5Vd'
+        request = drive_service.files().get_media(fileId=file_id)
+        fh = io.FileIO(pathToLoad, "wb")
+        downloader = MediaIoBaseDownload(fh, request)
+        done = False
+        while done is False:
+            status, done = downloader.next_chunk()
+            self.progressBar((int)(status.progress() * 100), 100, "{:s} loading".format(archiveName))
+        self.stdout.write("Load complete.")
+
+    def unzipArchive(self, pathToArchive, pathToUnzip):
+        self.stdout.write("Start Unzipping...", ending="")
+        self.stdout.flush()
+        try:
+            zipfile.ZipFile(pathToArchive).extractall(path=pathToUnzip)
+        except zipfile.BadZipfile:
+            self.error("Bad zip file can't unzip it")
+            return
+        self.stdout.write("Done.")
 
     def userCreation(self, num):
         people = [
@@ -124,6 +193,20 @@ class Command(BaseCommand):
             start += 1
             self.progressBar(start, end, "Creation of users")
 
+    def genresLoading(self):
+        start = 1
+        end = len(self.tags)
+        oldName = "None"
+        self.allGenres={}
+        for row in self.tags[1:]:
+            start += 1
+            self.progressBar(start, end, "Genres loading")
+            self.allGenres[row[0]] = row[1]
+            if oldName != row[1]:
+                g = Genre(id=row[0], name=row[1])
+                g.save()
+                oldName=row[1]
+
     def bookLoading(self, num):
         start = 1 # except first row
         end = num
@@ -137,13 +220,13 @@ class Command(BaseCommand):
 
             book = Book(id=row[1], title=bTitle, rating=bRating)
             smallImagePath = "/".join(row[22].split("/")[3:])
-            book.smallImage = smallImagePath #os.path.join(settings.MEDIA_ROOT, smallImagePath)
+            book.smallImage = smallImagePath
             middleImagePath ="/".join(row[21].split("/")[3:])
-            book.middleImage = middleImagePath  #os.path.join(settings.MEDIA_ROOT, middleImagePath)
+            book.middleImage = middleImagePath
             bigImagePathMas = row[21].split("/")[3:]
             bigImagePathMas[1] = bigImagePathMas[1].replace("m", "l")
             bigImagePath = "/".join(bigImagePathMas)
-            book.bigImage = bigImagePath  #os.path.join(settings.MEDIA_ROOT, bigImagePath)
+            book.bigImage = bigImagePath
 
             book.save()
             ## Rating counting
@@ -236,20 +319,22 @@ class Command(BaseCommand):
                     while caret > 1 and self.bookTags[caret][0] == row[1]:
                         caret -= 1
                         try:
-                            g = Genre.objects.get(id=self.bookTags[caret][1])
+                            gName = self.allGenres.get(self.bookTags[caret][1])
+                            g = Genre.objects.get(name=gName)
+                            book.genre.add(g)
                         except ObjectDoesNotExist:
-                            g = Genre(name=self.tags[int(self.bookTags[caret][1])][1])
-                            g.save()
-                        book.genre.add(g)
+                            # nothing to do
+                            pass
                     up = True
                     caret = i
                     while caret < btLen and self.bookTags[caret][0] == row[1]:
                         try:
-                            g = Genre.objects.get(id=self.bookTags[caret][1])
+                            gName = self.allGenres.get(self.bookTags[caret][1])
+                            g = Genre.objects.get(name=gName)
+                            book.genre.add(g)
                         except ObjectDoesNotExist:
-                            g = Genre(name=self.tags[int(self.bookTags[caret][1])][1])
-                            g.save()
-                        book.genre.add(g)
+                            # nothing to do
+                            pass
                         caret += 1
                     down = True
                 elif int(self.bookTags[i][0]) > int(row[1]):

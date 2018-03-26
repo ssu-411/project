@@ -1,6 +1,7 @@
 from django.contrib import admin
 from .models import Publisher, Book, Author, Genre
 from django.utils.html import mark_safe, format_html
+from django.core.files.storage import default_storage
 
 # Register your models here.
 
@@ -10,7 +11,10 @@ class BookAdmin(admin.ModelAdmin):
     readonly_fields = ['smallImage_tag', 'middleImage_tag', 'bigImage_tag', ]
 
     def smallImage_display(self, obj):
-        return mark_safe('<img src="{:s}" />'.format(obj.smallImage.url))
+        if default_storage.exists(obj.smallImage):
+            return mark_safe('<img src="{:s}" />'.format(obj.smallImage.url))
+        else:
+            return mark_safe('<img src="{:s}" />'.format("/media/books/None/no-imgs.jpg"))
     smallImage_display.short_description = "Book Cover"
 
 admin.site.register(Book, BookAdmin)
