@@ -20,9 +20,9 @@ schemas.
 
 1. Users schema for registration and logging
 
-   | id | username | password | email                | icon       |
-   | -- | :------: | :------: | :------------------: | ---------: |
-   |  1 | imsuper  | secret   | imsuper@somemail.com | pathToIcon |
+   | id | username | password | email                | toread recommendations | gender | age | favourite genres | favourite author | rated books |
+   | -- | :------: | :------: | :------------------: | :--------------------: | :----: | :-: | :--------------: | :--------------: | :---------: |
+   |  1 | imsuper  | secret   | imsuper@somemail.com | the list of books      | M or F | age | some of genres   | some of authors  | some rates  |
 
 2. Books schema global
 
@@ -59,7 +59,5 @@ The necessary files:
 * **tags.csv** - the list of tags.
 * **to_read.csv** - the books marked as to read by users.
 
-All .csv files and book images are provided in archive 
-/bookshelf/media/DBData.zip. But there no large images in it. They are in 
-[this](https://drive.google.com/open?id=1YlxVCuHfbvmCMenha7C2QxwMJXoNpCSA) 
-archive.
+All .csv files and book images are provided in archive DBData.zip. It can 
+be loaded from [here](https://drive.google.com/open?id=1zRsyvLePWX2pRWiRdck9zms-0lScB5Vd).
