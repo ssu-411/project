@@ -220,10 +220,12 @@ class Command(BaseCommand):
 
             book = Book(id=row[1], title=bTitle, rating=bRating)
             if row[22][8] != 's':
-                image_dir = "/".join(row[22].split("/")[3:])[:-1]
-                book.smallImage = image_dir + "s"
-                book.middleImage = image_dir + "m"
-                book.bigImage = image_dir + "l"
+                image_dir = row[22].split("/")[3:]
+                image_dir[-2] = image_dir[-2][:-1] + '{}'
+                image_dir = '/'.join(image_dir)
+                book.smallImage = image_dir.format("s")
+                book.middleImage = image_dir.format("m")
+                book.bigImage = image_dir.format("l")
             book.save()
             ## Rating counting
             step = rtLen // 2
