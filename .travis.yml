@@ -5,15 +5,20 @@ python:
   - "3.6"
 # List the versions of Django you'd like to test against
 env:
-  - DJANGO_VERSION=2.0.2
+  - TEST_SUITE=flake8
+  - TEST_SUITE=DjangoTests
 # Tell it the things it will need to install when it boots
-install: 
-  - pip install -r requirements.txt
-  - pip install -r test-requirements.txt
+install:
+  - if [[ $TEST_SUITE == "flake8" ]]; then
+      pip install flake8;
+    else
+      pip install -r requirements.txt;
+    fi;
 # Tell Travis how to run the test script itself
-matrix:
-  include:
-    - script: flake8 --count *.py
-    - script:
-        - cd bookshelf
-        - python manage.py test
+script:
+  - if [[ $TEST_SUITE == "flake8" ]]; then
+      flake8 --count *.py;
+    else
+      cd bookshelf;
+      python manage.py test;
+    fi;
