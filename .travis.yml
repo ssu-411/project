@@ -11,7 +11,11 @@ install:
   - pip install -r requirements.txt
   - pip install -r test-requirements.txt
 # Tell Travis how to run the test script itself
-script:
-  - flake8 --count *.py
-  - cd bookshelf
-  - python manage.py test
+jobs:
+  include:
+    - stage: flake8
+      script: flake8 --count *.py
+    - stage: django tests
+      script:
+        - cd bookshelf
+        - python manage.py test
