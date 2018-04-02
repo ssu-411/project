@@ -11,4 +11,7 @@ install:
   - pip install -r requirements.txt
   - pip install -r test-requirements.txt
 # Tell Travis how to run the test script itself
-script: flake8 --count *.py
+script:
+  - flake8 --count *.py
+  - cd bookshelf
+  - python manage.py test
