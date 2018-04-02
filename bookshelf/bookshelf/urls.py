@@ -22,6 +22,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from book.models import Book
 
+
 def get_top_books():
     books = Book.objects.order_by('-rating')[:10]
     return {'books': [books[i * 5: i * 5 + 5] for i in range(2)]}
