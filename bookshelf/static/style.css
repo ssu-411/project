@@ -202,8 +202,20 @@ footer {
     margin: auto;
 }
 
+
+.profile {
+    min-width: 430px;
+    max-width: 40%;
+    margin: auto;
+}
+
+.fieldWrapper {
+    padding-top: 5px;
+    padding-bottom: 5px;
+
 .reg_form label {
     grid-column: 1 / 2;
+
 }
 
 .reg_form button {
@@ -410,6 +422,23 @@ a.title-link:hover {
     color: darkred;
     text-decoration: none;
 }
+
+
+.profile_div {
+    display: inline;
+    font-size: 16px;
+    font-weight: bold;
+    width: 200px;
+    height: 100px;
+    padding: 5px;
+}
+
+.profile_btn {
+    width: 100px;
+    height: 35px;
+    font-weight: bold;
+    border-style: solid none;
+    border-radius: 4px;
 
 .col {
     overflow: hidden;

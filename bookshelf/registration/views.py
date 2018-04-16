@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.views import PasswordChangeView, login
 from django.shortcuts import render, redirect
@@ -64,7 +65,7 @@ class CustomPasswordChangeView(PasswordChangeView):
             context = super().get_context_data(**kwargs)
         else:
             context = {}
-        context['profile'] = MyUser.objects.get(id=user_id)
+        context['profile'] = MyUser.objects.get(user=User.objects.get(id=user_id))
         self.extra_context['changed'] = False
         return context
 
